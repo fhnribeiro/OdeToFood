@@ -13,15 +13,19 @@ namespace OdeToFood.Pages.Restaurants
     {
         private readonly IRestaurantData restaurantData;
 
+        public string Message { get; set; }
+
+        public Restaurant Restaurant { get; set; }
+
         public DetailModel(IRestaurantData restaurantData)
         {
             this.restaurantData = restaurantData;
         }
-        public Restaurant Restaurant { get; set; }
+
         public IActionResult OnGet(int restaurantId)
         {
             Restaurant = restaurantData.GetByID(restaurantId);
-            if(Restaurant == null)
+            if (Restaurant == null)
             {
                 return RedirectToPage("./NotFound");
             }
